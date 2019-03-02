@@ -10,5 +10,5 @@
 {{--
 	<li role="presentation" @if ($active == 'community') class="active" @endif><a href="{{ route('community_id') }}"><i class="fa fa-fw fa-floppy-o" aria-hidden="true"></i> Community</a></li>
 --}}
-	<li  role="presentation" @if ($active == 'community_id') class="active" @endif><a href="{{ route('community_id', ['communityid' => 1]) }}"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Community</a></li>
+	<li  role="presentation" @if ($active == 'community_id') class="active" @endif><a href="{{ route('community_id', ['communityid' => \App\PersonalInformation::where('user_id', Auth::id())->first()->community_id]) }}"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Community</a></li>
 </ul>

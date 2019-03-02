@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password')->nullable();
             $table->boolean('bot')->default('0');
-            $table->integer('community_id');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -33,16 +32,16 @@ class CreateUsersTable extends Migration
 
         DB::table('users')->insert(
             array(
-                array('first_name' => 'Dre', 'last_name' => 'Kurtis', 'avatar' => 'dre.jpg','email' => 'SocializerDre@mail.com', 'bot' => '1'),
-                array('first_name' => 'Iggy', 'last_name' => 'Cass', 'avatar' => 'iggy.jpg','email' => 'SocializerIggy@mail.com', 'bot' => '1'),
-                array('first_name' => 'Jonathan', 'last_name' => 'Rian', 'avatar' => 'jonathan.jpg','email' => 'SocializerJonathan@mail.com', 'bot' => '1'),
-                array('first_name' => 'Lela', 'last_name' => 'Clarissa', 'avatar' => 'lela.jpg','email' => 'SocializerLela@mail.com', 'bot' => '1'),
-                array('first_name' => 'Lexus', 'last_name' => 'Anemone', 'avatar' => 'lexus.jpg','email' => 'SocializerLexus@mail.com', 'bot' => '1'),
-                array('first_name' => 'Livia', 'last_name' => 'Celinda', 'avatar' => 'livia.jpg','email' => 'SocializerLivia@mail.com', 'bot' => '1'),
-                array('first_name' => 'Patti', 'last_name' => 'Joana', 'avatar' => 'patti.jpg','email' => 'SocializerPatti@mail.com', 'bot' => '1'),
-                array('first_name' => 'Reinaldo', 'last_name' => 'Russel', 'avatar' => 'reinaldo.jpg','email' => 'SocializerReinaldo@mail.com', 'bot' => '1'),
-                array('first_name' => 'Tyron', 'last_name' => 'Devyn', 'avatar' => 'tyron.jpg','email' => 'SocializerTyron@mail.com', 'bot' => '1'),
-                array('first_name' => 'Wyatt', 'last_name' => 'Garland', 'avatar' => 'wyatt.jpg','email' => 'SocializerWyatt@mail.com', 'bot' => '1'),
+                array('first_name' => 'Marjuke', 'last_name' => 'Rahman', 'avatar' => 'marjuke.jpg','email' => 'marjuke@mail.com', 'bot' => '1'),
+                array('first_name' => 'Mominul', 'last_name' => 'Shisier', 'avatar' => 'mohyminul.jpg','email' => 'mohyminul@mail.com', 'bot' => '1'),
+                array('first_name' => 'Mahadi', 'last_name' => 'Hasan', 'avatar' => 'mahadi.jpg','email' => 'mahadi@mail.com', 'bot' => '1'),
+                array('first_name' => 'Shamim', 'last_name' => 'Hasnain', 'avatar' => 'shamim.jpg','email' => 'shamim@mail.com', 'bot' => '1'),
+                array('first_name' => 'Faiyaz', 'last_name' => 'Islam', 'avatar' => 'faiyaz.jpg','email' => 'faiyaz@mail.com', 'bot' => '1'),
+                array('first_name' => 'Rocker', 'last_name' => 'Kushol', 'avatar' => 'rocker.jpg','email' => 'rocker@mail.com', 'bot' => '1'),
+                array('first_name' => 'Tahmid', 'last_name' => 'Hossain', 'avatar' => 'tahamid.jpg','email' => 'tahmid@mail.com', 'bot' => '1'),
+                array('first_name' => 'Ahmed', 'last_name' => 'Shafkat', 'avatar' => 'ahmed.jpg','email' => 'ahmed@mail.com', 'bot' => '1'),
+                array('first_name' => 'Ashik', 'last_name' => 'Haider', 'avatar' => 'ankon.jpg','email' => 'ashik@mail.com', 'bot' => '1'),
+                array('first_name' => 'Erfan', 'last_name' => 'Hamid', 'avatar' => 'erfan.jpg','email' => 'erfan@mail.com', 'bot' => '1'),
             )
         );
     }

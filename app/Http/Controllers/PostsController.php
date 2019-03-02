@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PersonalInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -61,7 +62,8 @@ class PostsController extends Controller
 
         $post = Post::create([
             'body' => $request->input('body'),
-            'user_id' => Auth::user()->id
+            'user_id' => Auth::user()->id,
+
         ]);
 
         $tags = $this->getTags($request->input('body'));

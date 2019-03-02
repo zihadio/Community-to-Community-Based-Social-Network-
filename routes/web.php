@@ -50,6 +50,10 @@ Route::group(['middleware' => 'auth'], function(){
     	'store', 'update', 'destroy']
     ]);
 
+    Route::resource('/community_posts', 'CommunityController', ['only' => [
+        'store', 'update', 'destroy']
+    ]);
+
     Route::resource('/comments', 'CommentsController', ['only' => [
     	'store', 'destroy'
     ]]);
@@ -113,10 +117,22 @@ Route::group(['middleware' => 'auth'], function(){
 		'uses' => 'LikesController@LikePost'
 	]);
 
+	/*Route::post('community/like', 'CommunityController@CommunityLikePost')->name('community_post.like');*/
+    Route::post('community/like', [
+       'as' => 'community_post.like',
+        'uses' => 'CommunityController@CommunityLikePost'
+    ]);
+
+
 	Route::post('post/info', [
 		'as' => 'post.info',
 		'uses' => 'PostsController@updateInfo'
 	]);
+
+    Route::post('community_post/info', [
+        'as' => 'community_post.info',
+        'uses' => 'CommunityController@updateInfo'
+    ]);
 
 	Route::post('search/friends', [
 		'as' => 'search.post',
@@ -172,4 +188,29 @@ Route::group(['middleware' => 'auth'], function(){
        'as' => 'community_id',
        'uses' => 'CommunityController@view'
     ]);
+
+    Route::get('/community', function(){
+        $user = Auth::user()->id;
+        $cid = \App\PersonalInformation::where('user_id', $user)->value('community_id');
+        return Redirect::to(URL::to('/community', ['cid'=>$cid]));
+    });
+
+
+
+    /*Route::get('/communityselect', [
+       'as' => 'communityselect',
+       'uses' => 'CommunityController@communitySelect'
+    ]);*/
+
+    Route::get('/personalinfo',[
+       'as' => 'personalinfo',
+       'uses' => 'ProfileController@personalInfoSave'
+    ]);
+
+    Route::post('/personalinfo',[
+        'as' => 'personalinfopost',
+        'uses' => 'ProfileController@personalInfoSavePost'
+    ]);
+
+
 });

@@ -43,7 +43,10 @@ class CommentsController extends Controller
             'body' => 'required|min:3|max:255'
         ]);
 
+        /*$post = Post::findOrFail($request->input('post_id'));*/
+
         $post = Post::findOrFail($request->input('post_id'));
+
 
         $comment = Comment::create([
             'post_id' => $request->input('post_id'),

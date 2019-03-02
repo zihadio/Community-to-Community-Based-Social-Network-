@@ -10,7 +10,13 @@ class Tag extends Model
     	'name', 'post_id'
     ];
 
-    public function posts(){
+    /*public function posts(){
     	return $this->belongsTo('App\Post');
+    }*/
+
+    public function posts(){
+        return $this->belongsTo('App\Post', 'App\Community_Post');
     }
+
+
 }

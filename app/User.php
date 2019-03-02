@@ -68,6 +68,15 @@ class User extends Authenticatable
         }
     }
 
+    public function likedCommunityPost($id){
+
+        if ($this->likes()->whereLikeableId($id)->whereLikeableType('App\Community_Post')->whereUserId(Auth::id())->first()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function savedPost($id){
         if ($this->saves()->wherePostId($id)->whereUserId(Auth::user()->id)->first()){
             return true;
@@ -83,9 +92,7 @@ class User extends Authenticatable
         })->orderBy('created_at', 'desc')->get();
     }
 
-    public function getCommunityTimeline(){
 
-    }
 
     public function getImages(){
         return Image::where('imageable_type', 'App\Post')->whereIn('imageable_id', [11])->get();
@@ -251,8 +258,35 @@ class User extends Authenticatable
         return (bool) $this->friends()->where('id', $user->id)->count();
     }
 
+
+
     public function community(){
-        return $this->hasOne('Community');
+        return $this->hasOne(Communities::class);
+    }
+
+    public function getCommunityTimeline(){
+
+        return $posts = Community_Post::where(function($query){
+
+            $user = Auth::user()->id;
+            $communityid = PersonalInformation::where('user_id', $user)->value('community_id');
+
+            return $query->where('community_id', $communityid);
+        })->orderBy('created_at', 'desc')->get();
+    }
+
+
+    public function personalInformation(){
+        return $this->belongsTo('PersonalInformation')->select(array('community_id'));
+    }
+
+    /////////??????????////////
+    public function communityPosts(){
+        return $this->hasMany('App\Post');
+    }
+
+    public function community_likes(){
+        return $this->hasMany('App\Community_Like');
     }
 
 

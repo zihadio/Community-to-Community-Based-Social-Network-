@@ -187,6 +187,8 @@
 			request.open('post', "{{ route('posts.store') }}");
 			request.send(formData);
 
+            $("#PostForm")[0].reset();
+
 		});
 
 

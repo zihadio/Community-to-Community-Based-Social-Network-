@@ -15,7 +15,7 @@ class CreateCommunityPostsTable extends Migration
     public function up()
     {
 
-        Schema::create('community_posts', function (Blueprint $table) {
+        Schema::create('community_post', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('community_id');
             $table->integer('user_id');
@@ -31,6 +31,6 @@ class CreateCommunityPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('community_posts');
+        Schema::dropIfExists('community_post');
     }
 }

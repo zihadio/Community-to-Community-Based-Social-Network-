@@ -301,7 +301,7 @@
         <div class="cont">
             <div class="demo">
                 <div class="login">
-                    <img src="{{ asset('img/logo_white_2.png') }}" width="250px" style="display: block; margin:0 auto; padding-top: 75px">
+                    <img src="{{ asset('img/final3.png') }}" width="250px" style="display: block; margin:0 auto; padding-top: 75px">
                     <div class="login__form login_form">
                     {!! Form::open(['id' => 'login_form']) !!}
                         <div class="login__row" id="LoginFormEmailInput">
@@ -347,6 +347,7 @@
                             </svg>
                             {!! Form::password('password', ['class' => 'login__input pass', 'placeholder' => 'Password']) !!}
                         </div>
+
                         <span id="RegisterFormPasswordError" style="display: none;" class="help-block" style="font-size: 12px"></span>
                         <button type="button" class="login__submit register_submit">Sign up</button>
                         <p class="login__signup">Already have an account? &nbsp;<a>Sign in</a></p>
@@ -462,6 +463,7 @@
 
                 $(document).on("click", ".register_submit", function(e) {
                     if (animating) return;
+
                     animating = true;
                     var that = this;
                     ripple($(that), e);
@@ -481,7 +483,9 @@
                               $(that).addClass("success");
                               setTimeout(function() {
                               }, submitPhase2 - 70);
-                          }, location.reload());
+                          }, /*location.reload()*/
+                             window.location.href = "{{URL::to('personalinfo')}}"
+                          );
                         } else {
                             $(that).removeClass("processing");
                             animating = false;

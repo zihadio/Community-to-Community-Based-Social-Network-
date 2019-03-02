@@ -22,10 +22,10 @@
 	@endforeach
 @else
 	<p>Start a conversation with {{ $friend->getFullName() }}</p>
-	@if ($friend->id == 1)
+	{{--@if ($friend->id == 1)
 		<p>I've heard he's a swell guy! ;)</p>
 	@endif
 	@if ($friend->bot == 1)
 		<p>Keep in mind that he's a bot, and he's quite shy. But loves sports, party and being a computer all day... :|</p>
-	@endif
+	@endif--}}
 @endif

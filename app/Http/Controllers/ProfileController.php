@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Communities;
+use App\PersonalInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -11,6 +13,8 @@ use Response;
 use Image;
 use App\User;
 use Auth;
+use DB;
+
 
 class ProfileController extends Controller
 {
@@ -104,4 +108,42 @@ class ProfileController extends Controller
         	'success' => true
         ));
 	}
+
+	public function personalInfoSave(){
+
+	    $data = Communities::all()->toArray();
+        return view('app.personal_information', compact('data'));
+    }
+
+    public function personalInfoSavePost(Request $request){
+
+        /*return $request->all();*/
+
+        $user = Auth::id();
+
+
+        $this->validate($request,[
+           'country' => 'required',
+           'city' => 'required',
+           'phoneno' => 'required',
+            'profession' => 'required'
+        ]);
+
+        $personalInformation = new PersonalInformation();
+        $personalInformation->user_id = $user;
+        $personalInformation->country = $request->country;
+        $personalInformation->city = $request->city;
+        $personalInformation->phone = $request->phoneno;
+        $personalInformation->profession = $request->profession;
+        $personalInformation->save();
+
+
+        $communityid = Communities::where('name', $request->profession)->value('community_id');
+        $personalInformation->community_id = $communityid;
+        $personalInformation->save();
+
+
+        return redirect(route('index'));
+
+    }
 }

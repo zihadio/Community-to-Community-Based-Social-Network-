@@ -31,7 +31,12 @@ class LoginController extends Controller
 				$remember = true;
 			}
 
+            /*return Response::json(array('success' => true), 200);*/
             return Response::json(array('success' => true), 200);
+
+            /*return redirect()->route('communityselect');*/
+
+
         } else {
         	return Response::json(array(
 		        'success' => false,
